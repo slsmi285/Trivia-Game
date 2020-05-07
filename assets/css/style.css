@@ -1,0 +1,10 @@
+body {
+    text-align: center;
+}
+#question-section button {
+    display: block;
+    margin: 5px auto;
+}
+#quiz {
+    display: none;
+}

@@ -1,21 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <title>Trivia Game</title>
+    <title>Trivia Game - Advanced</title>
 </head>
+
 <body>
     <!-- There is a top and bottom header/footer in black, background image-->
     <!--container rows/cols 4 rows and 1 column each-->
-    <!-- Rows 3 and 4 interchange with answer prompts and images-->
-    <!-- final image displays the counter/tracking scores and a button to "start over"-->
+    <div class="--container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="sticky-header">
 
-    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Hollywood Trivia Game</h1>
+            </div>
+        </div>
 
+        <!-- Rows 3 and 4 interchange with answer prompts and images-->
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="start button">Start</button>
+                <button class="button">Sample Button</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="quiz">
+                    <h3>Time Remaining: <span id="time"></span>Seconds</h3>
 
-<script src="assets/javascript/app.js"></script>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="question-section">
+                    <h2 id="qlabel">Question</h2>
+                    <button id="opt1">Option 1</button>
+                    <button id="opt2">Option 2</button>
+                    <button id="opt3">Option 3</button>
+                    <button id="opt4">Option 4</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="response">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- final image displays the counter/tracking scores and a button to "start over"-->
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="">
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="sticky-footer">
+                </div>
+            </div>
+
+        </div>
+<!-- <div class="stats-section"></div> -->
+ <!-- 
+    "Pages"
+    1. Start
+    Timer:
+        2. Question
+        3. Feedback
+            - Correct
+                * Message: Correct!
+                * Gif
+            - Wrong
+                * Message
+                * Correct Answer
+                * Gif
+        5. Stats Pages
+            Title
+            Correct count
+            Incorrect count
+            Unanswered Count
+            Button -> Start Over
+  -->
+
+    </div>
+    <script src="assets/javascript/app.js"></script>
 </body>
+
 </html>

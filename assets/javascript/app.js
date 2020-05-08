@@ -1,4 +1,5 @@
 //Advanced Trivia Game
+$(document).ready(function(){
 //1. Home Page
 //start Game
 
@@ -39,89 +40,124 @@
 // 3 types of scores -- final page: Correct Answers, Incorrect Answers, Unanswered.
 //Final page prompts  - displays: All done! Here's how you did!
 //Final page - reset - start over onlclick button
-var questions = [
+var messages = {
+    correct: "Brilliant! Well done!",
+    incorrect: "That's not the right answer." + "<br>" + "No. No. Don't Cry",
+    endTime: "Time's Up!" + "<br>" + "But, better luck on the next one!",
+    finished: "So, how did you?"
+}
+var triviaQuestions = [
     {
-        text: "In Disney's Lady and the Tramp, what dish do the two dogs share?",
-        correct: "Spaghetti",
-        option1: "Salad",
-        option2: "Soup",
-        option3: "Spaghetti",
-        option4: "Falfel",
-    },//you are a great dog! || Bad doggy!
-    //https://youtu.be/1nWNXO3CZkU?t=38
+        question: "In Disney's Lady and the Tramp, what dish do the two dogs share?",
+        answerList: ["Falafal", "Salad", "Soup", "Spaghetti"],
+        answer: 3,
+        image:"assets/images/L&T.gif",
+        answerText: "The setting was inspired by Walt Disney's hometown. ..."
+    },
     {
-        text: "Backdraft is a movie about which profession?",
-        correct: "Firemen",
-        option1: "Firemen",
-        option2: "Airplane Mechanics",
-        option3: "Strippers",
-        option4: "Pig Farmers",
-    },//Yay! Sound the firedrill! || You just got hosed!
-    //https://youtu.be/8izEMywMoxs?t=135
+        question: "Backdraft is a movie about which profession?",
+        answerList: ["Strippers", "Airplane Mechanics", "Firemen", "Pig Farmers"],
+        answer: 2,
+        image: "assets/images/backdraft.gif",
+        answerText: "Robert De Niro's Character Is Based On A Real Person. ..."
+    },
 
     {
-        text: "What is the name of Danny's gang in Grease?",
-        correct: "The Thunderbirds",
-        option1: "Queen",
-        option2: "The Thunderbirds",
-        option3: "The Mariacha's",
-        option4: "The Big Dudes",
-    },//Hey! How yu doin?! || Get outta here!
-    //https://youtu.be/XTBtQodOkTU?t=25
+        question: "What is the name of Danny's gang in Grease?",
+        answerList: ["The Thunderbirds", "Queen", "The Mariacha's", "The Big Kahuna's"],
+        answer: 0,
+        image: "assets/images/grease.gif",
+        answerText: "The Olivia Newton-John insisted on having a screen test with john travolta. ...'s"
+    },
 
     {
-        text: "Who plays Hilary Swank's coach in Million Dollar Baby?",
-        correct: "Clint Eastwood",
-        option1: "Rocky Balboa",
-        option2: "Chris Helmsworth",
-        option3: "Cher",
-        option4: "Clint Eastwood",
-    },//Good punch!!! || What?  I'm going to knock you out!
-    //https://youtu.be/jcXErUFrA68?t=56
+        question: "Who plays Hilary Swank's coach in Million Dollar Baby?",
+        answerList: ["Rocky Balboa", "Chris Helmsworth", "Cher", "Clint Eastwood"],
+        answer: 3,
+        image: "assets/images/mdb.gif",
+        answerText: "Based on a book called Rope Burns by F. X. O'Toole."
 
+    },
 
     {
-        text: "Which Hollywood leading man was in Spy Game, The Horse Whisperer, and All the President's Men?",
-        correct: "Robert Redford",
-        option1: "Clint Eastwood",
-        option2: "Al Pacino",
-        option3: "Robert Redford",
-        option4: "Ben Affleck",
-    },//"You followed the money!" Way to go! || "Your life is in danger!" Bummer!
-    //https://youtu.be/O4itfvSP7-c?t=76
+        question: "Which Hollywood leading man was in Spy Game, The Horse Whisperer, and All the President's Men?",
+        answerList: ["Clint Eastwood", "Al Pacino", "Robert Redford", "Ben Affleck"],
+        answer: 2,
+        image: "assets/images/apm.gif",
+        answerText: "Redford only wanted to produce it, but the studio made him star in it, too. ..."
+    },
 
     {
-        text: "What actor gets the girl in There's Something About Mary?",
-        correct: "Ben Stiller",
-        option1: "Ben Stiller",
-        option2: "Matt Damon",
-        option3: "David Spade",
-        option4: "Brad Pitt",
-    },//Well played! || Bah ha ha! Really?? Not even close!
-    //https://youtu.be/mbFx0CbaIlY?t=102
+        question: "What actor gets the girl in There's Something About Mary?",
+        answerList: ["Ben Stiller","Matt Damon", "David Spade", "Brad Pitt",
+        answer: 0,
+        image: "assets/images/wam.gif",
+        answerText: "Ben Stiller won the role of Ted Stroehmann over Owen Wilson and the future host of The Daily Show."
+    },
 
     {
-        text: "What 1975 film made people afraid to go into the water?",
-        correct: "Jaws",
-        option1: "Barracuda",
-        option2: "Jaws",
-        option3: "Hammerhead",
-        option4: "Mega",
-    },//Yep! Not getting in the water! ||  Time to walk the plank!
-    //https://youtu.be/JD33DeQTipU?t=30
+        question: "What 1975 film made people afraid to go into the water?",
+        answerList: ["Baby Shark", "Hammerhead", "Jaws", "Megladon"],
+        answer: 2,
+        image: "assets/images/jaws.gif",
+        answerText: "The shark was named “Bruce” after Spielberg's lawyer. ..."
+    },
 
     {
-        text: "Who directed Jurrasic Park?",
-        correct: "Steven Spielberg",
-        option1: "Steven Spielberg",
-        option2: "Martin Scorsese",
-        option3: "James Cameron",
-        option4: "George Lucas",
-    },//Yep! You are the Dinosaur! || Seriously?  You thought that???
-    //https://youtu.be/9-d90tVWaxE?t=124
-    
+        question: "Who directed Jurrasic Park?",
+        answerList: ["Steven Spielberg", "George Lucas", "Henry Winkler", "Walt Disney",
+        answer: 0,
+        image: "assets/images/jp.gif",
+        asnwerText: "Dr. Grant: I think we're out of a job. Malcolm: Don't you mean extinct?"
+    },
+
 
 ]
+
+//this hides the game area on the page load
+$("#gameCol").hide();
+
+//This captures user click on the reset button to create a new game
+$("#startBtn").on("click", function() {
+    $(this).hide();
+    newGame();
+});
+
+//this functions sets up the page for a new game emptying all areas and showing game area
+function newGame() {
+    $("#gameCol").show();
+    $("#finalMessage").empty():
+    $("#correctAnswers").empty();
+    $("#incorrectAnswers").empty();
+    $("#unanswered").empty();
+    $("#gif").hide();
+    $("#gifCaption").hide();
+    currentQuestion = 0;
+    correctAnswer = 0;
+    incorrectAnswer = 0;
+    unanswered = 0;
+    newQuestion();
+}
+//This function displays the next question
+function newQuestion() {
+    $("#message").empty();
+    $("#correctedAnswer").empty();
+    $("#gif").hide();
+    $("#gifCaption").hide();
+    answered = true;
+}
+//this function displays the new question
+$("#currentQuestion").html("Question " + (currentQuestion+1) + " of " + triviaQuestions.length);
+$(".question").html(triviaQuestions[currentQuestion].question);
+
+//this function displays the new question's answer options in multiple choice type
+for(var i = 0; i <=5; i++) {
+    var choices = $("<div>");
+    choices.text(triviaQuestions[currentQuestion].answerList[i])
+}
+
+
+
 var time = 15;
 var startButton = $(".start-button");
 var quizSection = $("#quiz");

@@ -1,24 +1,24 @@
 //Advanced Trivia Game
 //1. Home Page
-    //start Game
+//start Game
 
 //2. Timer - 30 seconds
-    //when page loads, first, the timer, questions and summary must be hidden.
+//when page loads, first, the timer, questions and summary must be hidden.
 
 //3. 8 Questions - Object/Array - 4 mulitple choice answers
-    //1 correct answer
-        //Correct Answer: Win
-        //Wrong Answer: Lose
-        //Unanswered: Lose
-        //Out of Time: Lose
-            //video image populates
-            //Delay 3 seconds before next question
+//1 correct answer
+//Correct Answer: Win
+//Wrong Answer: Lose
+//Unanswered: Lose
+//Out of Time: Lose
+//video image populates
+//Delay 3 seconds before next question
 
 //4. End of 8 questions:
-    //Score:
-        //Correct Answers:
-        //Incorrect Answers:
-        //Unanswered:
+//Score:
+//Correct Answers:
+//Incorrect Answers:
+//Unanswered:
 
 //5. Prompt: Do you want to play again?
 
@@ -35,11 +35,11 @@
 // If the player chooses the wrong answer, a prompt will be displayed "Wrong Answer! - display correct answer above picture"
 
 //There is a timer, 3 types of scores and 2 types of resets.
-    //timer is 30 seconds
-    // 3 types of scores -- final page: Correct Answers, Incorrect Answers, Unanswered.
-    //Final page prompts  - displays: All done! Here's how you did!
-    //Final page - reset - start over onlclick button
-    var questions = [
+//timer is 30 seconds
+// 3 types of scores -- final page: Correct Answers, Incorrect Answers, Unanswered.
+//Final page prompts  - displays: All done! Here's how you did!
+//Final page - reset - start over onlclick button
+var questions = [
     {
         text: "In Disney's Lady and the Tramp, what dish do the two dogs share?",
         correct: "Spaghetti",
@@ -48,6 +48,7 @@
         option3: "Spaghetti",
         option4: "Falfel",
     },//you are a great dog! || Bad doggy!
+    //https://youtu.be/1nWNXO3CZkU?t=38
     {
         text: "Backdraft is a movie about which profession?",
         correct: "Firemen",
@@ -56,6 +57,8 @@
         option3: "Strippers",
         option4: "Pig Farmers",
     },//Yay! Sound the firedrill! || You just got hosed!
+    //https://youtu.be/8izEMywMoxs?t=135
+
     {
         text: "What is the name of Danny's gang in Grease?",
         correct: "The Thunderbirds",
@@ -64,6 +67,8 @@
         option3: "The Mariacha's",
         option4: "The Big Dudes",
     },//Hey! How yu doin?! || Get outta here!
+    //https://youtu.be/XTBtQodOkTU?t=25
+
     {
         text: "Who plays Hilary Swank's coach in Million Dollar Baby?",
         correct: "Clint Eastwood",
@@ -72,6 +77,9 @@
         option3: "Cher",
         option4: "Clint Eastwood",
     },//Good punch!!! || What?  I'm going to knock you out!
+    //https://youtu.be/jcXErUFrA68?t=56
+
+
     {
         text: "Which Hollywood leading man was in Spy Game, The Horse Whisperer, and All the President's Men?",
         correct: "Robert Redford",
@@ -80,6 +88,8 @@
         option3: "Robert Redford",
         option4: "Ben Affleck",
     },//"You followed the money!" Way to go! || "Your life is in danger!" Bummer!
+    //https://youtu.be/O4itfvSP7-c?t=76
+
     {
         text: "What actor gets the girl in There's Something About Mary?",
         correct: "Ben Stiller",
@@ -88,6 +98,8 @@
         option3: "David Spade",
         option4: "Brad Pitt",
     },//Well played! || Bah ha ha! Really?? Not even close!
+    //https://youtu.be/mbFx0CbaIlY?t=102
+
     {
         text: "What 1975 film made people afraid to go into the water?",
         correct: "Jaws",
@@ -96,6 +108,8 @@
         option3: "Hammerhead",
         option4: "Mega",
     },//Yep! Not getting in the water! ||  Time to walk the plank!
+    //https://youtu.be/JD33DeQTipU?t=30
+
     {
         text: "Who directed Jurrasic Park?",
         correct: "Steven Spielberg",
@@ -104,59 +118,61 @@
         option3: "James Cameron",
         option4: "George Lucas",
     },//Yep! You are the Dinosaur! || Seriously?  You thought that???
+    //https://youtu.be/9-d90tVWaxE?t=124
+    
 
-    ]
-    var time = 15;
-    var startButton = $(".start-button");
-    var quizSection = $("#quiz");
-    var questionSection = $("#question-section");
-    var timeLabel = $("#time");
-    var questionLabel = $("qLabel");
-    //Option Buttons
-    var option1Button = $("opt1");
-    var option2Button = $("opt2");
-    var option3Button = $("opt3");
-    var option4Button = $("opt4");
-    var currentQuestionIndex = 0;
-    startButton.click(function(){
-        startButton.toggle();
-        quizSection.toggle();
-        showQuestion();
-    })
-    $("#question-section button").click(function(event) {
-        var selected = event.currentTarget.innerText;
-        var question = questions[currentQuestionIndex]
-        if(selected === question.correct) {
-            //document.write("Correct!");
-            console.log("Correct!");
-        }
-        else {
-            console.log("Wrong!");
-        }
-    })
-    function showQuestion() {
-        time = 15;
-        timeLabel.html(time);
-        var question =  questions[currentQuestionIndex];
-        questionLabel.html(question.text)
-        //Populate Questions in HTML
-        option1Button.html(question.option1)
-        option2Button.html(question.option2)
-        option3Button.html(question.option3)
-        option4Button.html(question.option4)
-        var timer = setInterval(function() {
-            time--;
-            if(time < 0) {
-                clearInterval(timer);
-                currentQuestionIndex++;
-                if(currentQuestionIndex < questions.length) {
-                    showQuestion();
-                }
-                else{
-                    console.log("Show results sections...");
-                }
-            }
-            timeLabel.html(time);
-        }, 1000)
-        })
+]
+var time = 15;
+var startButton = $(".start-button");
+var quizSection = $("#quiz");
+var questionSection = $("#question-section");
+var timeLabel = $("#time");
+var questionLabel = $("qLabel");
+//Option Buttons
+var option1Button = $("opt1");
+var option2Button = $("opt2");
+var option3Button = $("opt3");
+var option4Button = $("opt4");
+var currentQuestionIndex = 0;
+startButton.click(function () {
+    startButton.toggle();
+    quizSection.toggle();
+    showQuestion();
+})
+$("#question-section button").click(function (event) {
+    var selected = event.currentTarget.innerText;
+    var question = questions[currentQuestionIndex]
+    if (selected === question.correct) {
+        //document.write("Correct!");
+        console.log("Correct!");
     }
+    else {
+        console.log("Wrong!");
+    }
+})
+function showQuestion() {
+    time = 15;
+    timeLabel.html(time);
+    var question = questions[currentQuestionIndex];
+    questionLabel.html(question.text)
+    //Populate Questions in HTML
+    option1Button.html(question.option1)
+    option2Button.html(question.option2)
+    option3Button.html(question.option3)
+    option4Button.html(question.option4)
+    var timer = setInterval(function () {
+        time--;
+        if (time < 0) {
+            clearInterval(timer);
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                showQuestion();
+            }
+            else {
+                console.log("Show results sections...");
+            }
+        }
+        timeLabel.html(time);
+    }, 1000)
+}
+

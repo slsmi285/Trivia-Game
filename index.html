@@ -1,88 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--JQuery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <title>Trivia Game - Advanced</title>
-</head>
-
-<body>
-    <!-- There is a top and bottom header/footer in black, background image-->
-    <!--container rows/cols 4 rows and 1 column each-->
-    <div class="--container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="sticky-header">
-
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <h1>Hollywood Trivia Game</h1>
-            </div>
-        </div>
-
-        <!-- Rows 3 and 4 interchange with answer prompts and images-->
-        <div class="row">
-            <div class="col-sm-12">
-                <button class="start button">Start</button>
-                <button class="button">Sample Button</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="quiz">
-                    <h3>Time Remaining: <span id="time"></span>Seconds</h3>
-
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="question-section">
-                    <h2 id="qlabel">Question</h2>
-                    <button id="opt1">Option 1</button>
-                    <button id="opt2">Option 2</button>
-                    <button id="opt3">Option 3</button>
-                    <button id="opt4">Option 4</button>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="response">
-                </div>
-            </div>
-
-        </div>
-
-        <!-- final image displays the counter/tracking scores and a button to "start over"-->
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="">
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="sticky-footer">
-                </div>
-            </div>
-
-        </div>
-<!-- <div class="stats-section"></div> -->
- <!-- 
+<!-- 
     "Pages"
     1. Start
     Timer:
@@ -103,8 +22,80 @@
             Button -> Start Over
   -->
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title>Trivia Game - Advanced</title>
+
+</head>
+
+<body>
+
+
+    <div class="--container">
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Hollywood Trivia Game</h1>
+            </div>
+        </div>
+
+        <!-- Rows 3 and 4 interchange with answer prompts and images-->
+        <div class="row" id="gameRow">
+            <div class="col-sm-12" id="startCol">
+                <div id="startDiv">
+                    <div id="start">
+                        <button class="start button">Start The Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="stats-section"></div> -->
+        <div class="row" id="gameRow">
+            <div class="col-sm-12" id="gameCol">
+                <!--for each question-->
+                <div id="currentQuestion"></div>
+                <div id="timeLeft"></div>
+                <div class="question"></div>
+                <div class="answerList"></div>
+                <!--for each answer-->
+                <div id="message"></div>
+                <div id="correctAnswer"></div>
+                <div class="gif"></div>
+                <div class="gifCaption"></div>
+                <!--results-->
+                <div id="finalMessage"></div>
+                <div id="correctAnswers"></div>
+                <div class="incorrectAnswers"></div>
+                <div class="unanswered"></div>
+                <div class="startOverBtn"></div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="sticky-footer">
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
-    <script src="assets/javascript/app.js"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 
 </html>

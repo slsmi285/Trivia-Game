@@ -1,7 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- 
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <title>Trivia Game - Advanced</title>
+    <!-- 
     "Pages"
     1. Start
     Timer:
@@ -21,81 +36,45 @@
             Unanswered Count
             Button -> Start Over
   -->
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--JQuery-->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <title>Trivia Game - Advanced</title>
-
 </head>
 
 <body>
-
-
-    <div class="--container">
-
-
-        <div class="row">
-            <div class="col-sm-12">
-                <h1>Hollywood Trivia Game</h1>
-            </div>
+    <div class="container">
+        
+        <div class="header text-center clearfix">
+            <h1 class="text-muted">Hollywood Trivia Game</h1>
         </div>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container-fluid">
+                <div id="game">
+                    <h2>Hollywood Trivia Game</h2>
+                    <p id="remaining-time" class="lead">Remaining Time: <span id="timer"></span></p>
+                    <p id="question" class="lead"></p>
+                </div>
+                <div id="results">
+                </div>
+            </div>
 
-        <!-- Rows 3 and 4 interchange with answer prompts and images-->
-        <div class="row" id="gameRow">
-            <div class="col-sm-12" id="startCol">
-                <div id="startDiv">
-                    <div id="start">
-                        <button class="start button">Start The Game</button>
+            <div class="row">
+                <div id="choices" class="text-center">
+                    <button id="start" class="btn btn-info btn-lg">Start Game</button>
+                    <div id="options">
+
                     </div>
+
                 </div>
             </div>
         </div>
 
-        <!-- <div class="stats-section"></div> -->
-        <div class="row" id="gameRow">
-            <div class="col-sm-12" id="gameCol">
-                <!--for each question-->
-                <div id="currentQuestion"></div>
-                <div id="timeLeft"></div>
-                <div class="question"></div>
-                <div class="answerList"></div>
-                <!--for each answer-->
-                <div id="message"></div>
-                <div id="correctAnswer"></div>
-                <div class="gif"></div>
-                <div class="gifCaption"></div>
-                <!--results-->
-                <div id="finalMessage"></div>
-                <div id="correctAnswers"></div>
-                <div class="incorrectAnswers"></div>
-                <div class="unanswered"></div>
-                <div class="startOverBtn"></div>
-            </div>
-        </div>
 
-
-
-
-
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="sticky-footer">
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
-    <script type="text/javascript" src="assets/javascript/app.js"></script>
+        <!-- jQuery CDN-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Bootstrap CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+        <!-- TRIVIA APP JS -->
+        <script src="./assets/javascript/app.js"></script>
 </body>
 
 </html>

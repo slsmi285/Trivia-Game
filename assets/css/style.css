@@ -1,122 +1,32 @@
 body {
     background-image: url("../images/Hollywood.jpg");
     background-repeat: no-repeat;
-    background-position: top;
-    /*-webkit-background-size: cover;*/
-    background-size: cover;
-    padding-top: 200px;
-    padding-bottom: 100px;
-    width: 100%
-}
-h1 {
+    background-attachment: fixed;
+    background-size: 100% 100%;
     text-align: center;
-    border: 1px solid #000000;
-    background-color: blueviolet;
+    
+}
+.text-muted{
+    color: blue;
+}
+.last-seconds{
+    color:red;
 }
 
-#gameRow {
-    text-align: center;
-    margin-top: 30px;
+#start {
+    position: relative;
+    margin-left: 600px;
+    
 }
-#gameCol {
-    text-align: center;
-    border: 2px solid #ffffac;
-    margin-bottom: 30px;
-    min-height: 50%;
-    background-repeat: no-repeat;
-    background-position: top;
-    -webkit-background-size: cover;
-    background-size: cover;
-    padding-top: 140px;
-    padding-bottom: 140px;
-    width: 100%    border-radius: 5px;
-    padding: 30px;
-    min-height: 300px;
-    margin-bottom: 60px;
+#question {
+    position: relative;
+    margin-left: 125px;
 }
-
-#startBtn {
-    background-color: #ffffac;
-    color: black;
-    border: 1px solid #000000;
-    font-size: 200%;
-    letter-spacing: 2px;
-    padding: 20px 50px;
-    margin-top: 30px;
-
-}
-#startBtn:hover {
-    background-color: black;
-    color: #ffffac;
-    border: 1px solid #ffffac;
-}
-#timeLeft {
-    font-size: 300%;
-    color: #ffffac;
-    letter-spacing: 2px;
-    font-weight: 500;
-}
-#currentQuestion {
-    color: white;
-    text-align: left;
-    font-size: 100%;
-    text-transform: uppercase;
-}
-.question {
-    color: white;
-    font-size: 200%;
-    margin: 10px 0 0 30px;
-}
-.answerList {
-    text-align: center;
-    margin: 0 30px 30px 30px;
-    color: #ffffac;
-    font-size: 150%;
-    line-height: 2.5;
-}
-.thisChoice:hover {
-    background-color: #ffffac;
-    color: black;
-}
-#message {
-    color: white;
-    font-size: 125%;
-    margin-bottom: 10px;
-}
-#correctAnswer {
-    color: #ffffac;
-    font-size: 100%;
-    text-transform: uppercase;
-}
-#gif {
-    max-height: 200px;
-    max-width: 320px;
-    border: 1px solid #ffffac;
-    border-radius: 5px;
-}
-#gifCaption {
-    color: #ffffac;
-}
-.reset {
-    background-color: #ffffac;
-    color: black;
-    border: 1px solid #000000;
-    font-size: 200%;
-    letter-spacing: 2px;
-    margin: 30px 40px 40px 0;
-    padding: 20px 20px;
-    border-radius: 5px;
-}
-.reset:hover {
-    background-color: black;
-    color: #ffffac;
-    border: 1px solid #ffffac;
-}
-#finalMessage {
-    color: white;
-    font-size: 150%;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 2;
+#options {
+    position: relative;
+    top: 50px;
+    left: 750px;
+    bottom: 100px
+    
 }
 

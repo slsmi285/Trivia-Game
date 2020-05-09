@@ -1,39 +1,3 @@
-//Advanced Trivia Game//1. Home Page
-//start Game
-
-//2. Timer - 30 seconds
-//when page loads, first, the timer, questions and summary must be hidden.
-
-//3. 8 Questions - Object/Array - 4 mulitple choice answers
-//1 correct answer
-//Correct Answer: Win
-//Wrong Answer: Lose
-//Unanswered: Lose
-//Out of Time: Lose
-//video image populates
-//Delay 3 seconds before next question
-
-//4. End of 8 questions:
-//Score:
-//Correct Answers:
-//Incorrect Answers:
-//Unanswered:
-
-//5. Prompt: Do you want to play again?
-//If user chooses correct answer -- correct answer is true.
-//Player wins.
-//Prompt displays "You Win: Correct Answer Displayed - above image or video image"
-
-//for next random question, there is a 3 second delay before next question is displayed.
-
-//if the player runs out of time, a prompt will be displayed "You ran out of time!  - display correct answer above picture".
-// If the player chooses the wrong answer, a prompt will be displayed "Wrong Answer! - display correct answer above picture"
-
-//There is a timer, 3 types of scores and 2 types of resets.
-//timer is 30 seconds
-// 3 types of scores -- final page: Correct Answers, Incorrect Answers, Unanswered.
-//Final page prompts  - displays: All done! Here's how you did!
-//Final page - reset - start over onlclick button
 $(document).ready(function () {
 
     //event listeners
@@ -48,36 +12,37 @@ var trivia = {
     incorrect: 0,
     unanswered: 0,
     currentSet: 0,
-    time: 20,
+    time: 10,
     timerOn: false,
     timerId: "",
     // questions options and answers data
     questions: {
-        q1: "",
-        q2: "",
-        q3: "",
-        q4: "",
-        q5: "",
-        q6: "",
-        q7: "",
+        q1: "In Disney's Lady and the Tramp, what dish do the two dogs share?",
+        q2: "Backdraft is a movie about which profession?",
+        q3: "What is the name of Danny's gang in Grease?",
+        q4: "Who plays Hilary Swank's coach in Million Dollar Baby?",
+        q5: "Which Hollywood leading man was in Spy Game, The Horse Whisperer, and All the President's Men?",
+        q6: "What actor gets the girl in There's Something About Mary?",
+        q7: "What 1975 film made people afraid to go into the water?",
     },
     options: {
-        q1: [],
-        q2: [],
-        q3: [],
-        q4: [],
-        q5: [],
-        q6: [],
-        q7: [],
+        q1: ["Falafal", "Salad", "Soup", "Spaghetti"],
+        q2: ["Strippers", "Airplane Mechanics", "Firemen", "Pig Farmers"],
+        q3: ["The Thunderbirds", "Queen", "The Mariacha's", "The Big Kahuna's"],
+        q4: ["Rocky Balboa", "Chris Helmsworth", "Cher", "Clint Eastwood"],
+        q5: ["Clint Eastwood", "Al Pacino", "Robert Redford", "Ben Affleck"],
+        q6: ["Ben Stiller", "Matt Damon", "David Spade", "Brad Pitt"],
+        q7: ["Baby Shark", "Hammerhead", "Jaws", "Megladon"],
     },
     answers: {
-        q1: "",
-        q2: "",
-        q3: "",
-        q4: "",
-        q5: "",
-        q6: "",
-        q7: "",
+        q1: "Spaghetti",
+        q2: "Firemen",
+        q3: "The Thunderbirds",
+        q4: "Clint Eastwood",
+        q5: "Robert Redford",
+        q6: "Ben Stiller",
+        q7: "Jaws",
+        
     },
     //trivia methods
     //method to initialize game
@@ -109,248 +74,107 @@ var trivia = {
     },
     //method to loop through and display questions and options
     nextQuestion: function () {
-        
+        //set timer to 30 seconds each question
+        trivia.timer = 10;
+        $("#timer").removeClass("last-seconds");
+        $("#timer").text(trivia.timer);
+
+        //to prevent timer speed up
+        if (!trivia.timerOn) {
+            trivia.timerId = setInterval(trivia.timerRunning, 1000);
+        }
+
+        //gets all the questions then indexes the current questions
+        var questionContent = Object.values(trivia.questions)[trivia.currentSet];
+        $("#question").text(questionContent);
+
+        //an array of all the user options for the current question
+        var questionOptions = Object.values(trivia.options)[trivia.currentSet];
+
+        //creates all the trivia guess options in the html
+        $.each(questionOptions, function (idex, key) {
+            $("#options").append($('<button class="option btn btn-info btn-lg">' + key + '</button>'));
+        })
+    },
+
+    //method to decrement counter and count unanswered if timer runs out
+    timerRunning: function() {
+        //if timer still has time left and there are still questions left to ask
+        if (trivia.timer> -1 && trivia.currentSet < Object.keys(trivia.questions).length) {
+            $("#timer").text(trivia.timer);
+            trivia.timer--;
+            if (trivia.timer === 4) {
+                $("#timer").addClass("last-seconds");
+            }
+        }
+        //the time has run out and increment unanswered, run result
+        else if (trivia.timer === -1) {
+            trivia.unanswered++;
+            trivia.result = false;
+            clearInterval(trivia.timerId);
+            resultId = setTimeout(trivia.guessResult, 1000);
+            $("#results").html("<h3>Times Up! The answer was " + Object.values(trivia.answers)[trivia.currentSet] + "</h3>");
+        }
+        //if all the questions have been shown end the game, show results
+        else if (trivia.currentSet === Object.keys(trivia.questions).length) {
+
+            //adds results of game (correct, incorrect, unanswered) to the page
+            $("#results")
+            .html("<h3>Thank you for playing!</h3>" +
+                "<p>Correct: " + trivia.correct + "</p>" +
+                "<p>Incorrect: " + trivia.incorrect + "</p>" +
+                "<p>Unanswered: " + trivia.unanswered + "</p>" +
+                "<p>Do you want to play gain?</p>");
+
+                //hide game section
+                $("#game").hide();
+
+                //show start button to begin a new game
+                $("#start").show();
+        }
+    },
+    //method to evaluate the option clicked
+    guessChecker: function() {
+
+        //time ID for gameResult setTimeout
+        var resultId;
+
+        //the answer to the current question being asked
+        var currentAnswer = Object.values(trivia.answers)[trivia.currentSet];
+
+        //if the text of the option picked matches the answer of the current question, increment correct
+        if ($(this).text() === currentAnswer) {
+            //turn button green for correct
+            $(this).addClass("btn-success").removeClass("btn-info");
+
+            trivia.correct++;
+            clearInterval(trivia.timerId);
+            resultId = setTimeout(trivia.guessResult, 1000);
+            $("#results").html("<h3>Brilliant! Correct!</h3>");
+        }
+        //else the user picked the wrong option, increment incorrect
+        else {
+            //turn button clicked red for incorrect
+            $(this).addClass("btn-danger").removeClass("btn-info");
+
+            trivia.incorrect++;
+            clearInterval(trivia.timerId);
+            resultId = setTimeout(trivia.guessResult, 1000);
+            $("#results").html("<h3>Don't Cry! Better luck next time!" + currentAnswer + "</h3>");
+        }
+
+    },
+    //method to remove previous question results and options
+    guessResult: function () {
+
+        //increment to next question set
+        trivia.currentSet++;
+
+        //remove the options and results
+        $(".option").remove();
+        $("#results h3").remove();
+
+        //begin next question
+        trivia.nextQuestion();
     }
 }
-
-    var currentQuestion;
-    var correctAnswer;
-    var incorrectAnswer;
-    var unanswered;
-    var seconds;
-    var time;
-    var answered;
-    var userSelect;
-
-    var messages = {
-        correct: "Brilliant! Well done!",
-        incorrect: "That's not the right answer." + "<br>" + "No. No. Don't Cry",
-        endTime: "Time's Up!" + "<br>" + "But, better luck on the next one!",
-        finished: "So, how did you do?",
-    };
-    //array of objects
-    var triviaQuest = [
-        {
-            question: "In Disney's Lady and the Tramp, what dish do the two dogs share?",
-            answerList: ["Falafal", "Salad", "Soup", "Spaghetti"],
-            answer: 3,
-            image: "assets/images/L&T.gif",
-            answerText: "The setting was inspired by Walt Disney's hometown. ..."
-        },
-        {
-            question: "Backdraft is a movie about which profession?",
-            answerList: ["Strippers", "Airplane Mechanics", "Firemen", "Pig Farmers"],
-            answer: 2,
-            image: "assets/images/backdraft.gif",
-            answerText: "Robert De Niro's Character Is Based On A Real Person. ..."
-        },
-
-        {
-            question: "What is the name of Danny's gang in Grease?",
-            answerList: ["The Thunderbirds", "Queen", "The Mariacha's", "The Big Kahuna's"],
-            answer: 0,
-            image: "assets/images/grease.gif",
-            answerText: "The Olivia Newton-John insisted on having a screen test with john travolta. ...'s"
-        },
-
-        {
-            question: "Who plays Hilary Swank's coach in Million Dollar Baby?",
-            answerList: ["Rocky Balboa", "Chris Helmsworth", "Cher", "Clint Eastwood"],
-            answer: 3,
-            image: "assets/images/mdb.gif",
-            answerText: "Based on a book called Rope Burns by F. X. O'Toole."
-
-        },
-
-        {
-            question: "Which Hollywood leading man was in Spy Game, The Horse Whisperer, and All the President's Men?",
-            answerList: ["Clint Eastwood", "Al Pacino", "Robert Redford", "Ben Affleck"],
-            answer: 2,
-            image: "assets/images/apm.gif",
-            answerText: "Redford only wanted to produce it, but the studio made him star in it, too. ..."
-        },
-
-        {
-            question: "What actor gets the girl in There's Something About Mary?",
-            answerList: ["Ben Stiller", "Matt Damon", "David Spade", "Brad Pitt"],
-            answer: 0,
-            image: "assets/images/wam.gif",
-            answerText: "Ben Stiller won the role of Ted Stroehmann over Owen Wilson and the future host of The Daily Show."
-        },
-
-        {
-            question: "What 1975 film made people afraid to go into the water?",
-            answerList: ["Baby Shark", "Hammerhead", "Jaws", "Megladon"],
-            answer: 2,
-            image: "assets/images/jaws.gif",
-            answerText: "The shark was named “Bruce” after Spielberg's lawyer. ..."
-        },
-
-        {
-            question: "Who directed Jurrasic Park?",
-            answerList: ["Steven Spielberg", "George Lucas", "Henry Winkler", "Walt Disney"],
-            answer: 0,
-            image: "assets/images/jp.gif",
-            asnwerText: "Dr. Grant: I think we're out of a job. Malcolm: Don't you mean extinct?"
-        },
-
-
-    ];
-
-    //this hides the game area on the page load
-    $("#gameCol").hide();
-
-    //This captures user click on the reset button to create a new game
-    $("#startBtn").on("click", function () {
-        $(this).hide();
-        newGame();
-    });
-
-    //this functions sets up the page for a new game emptying all areas and showing game area
-    function newGame() {
-        $("#gameCol").show();
-        $("#finalMessage").empty();
-        $("#correctAnswers").empty();
-        $("#incorrectAnswers").empty();
-        $("#unanswered").empty();
-        $("#gif").hide();
-        $("#gifCaption").hide();
-        currentQuestion = 0;
-        correctAnswer = 0;
-        incorrectAnswer = 0;
-        unanswered = 0;
-        newQuestion();
-    }
-    //This function displays the next question
-    function newQuestion() {
-        $("#message").empty();
-        $("#correctedAnswer").empty();
-        $("#gif").hide();
-        $("#gifCaption").hide();
-        answered = true;
-    }
-    //this function displays the new question
-    $("#currentQuestion").html("Question " + (currentQuestion + 1) + " of " + triviaQuest.length);
-    console.log("currentQuestion line 156");
-    //$(".question").html(triviaQuest[currentQuestion].question);
-    //console.log("html class=question line 158");
-
-    //this function displays the new question's answer options in multiple choice type
-    for (var i = 0; i <= 5; i++) {
-        var choices = $("<div>");
-        //choices.text(triviaQuest[currentQuestion].answerList[i]);
-        choices.attr({ "data-index": i });
-        choices.addClass("thisChoice");
-        $(".answerList").append(choices);
-    }
-
-    //this sets the timer
-    countdown();
-
-    //When the user clicks on an answer this will pause the time and display the correct answer to the question
-    $(".thisChoice").on("click", function () {
-        userSelect = $(this).data("index");
-        clearInterval(time);
-        answerPage();
-
-    });
-
-
-
-
-    //This function is for the timer countdown
-    function countdown() {
-        seconds = 15;
-        $("#timeLeft").html("00: " + seconds);
-        answered = true;
-        //sets a delay of one second before the timer starts
-        time = setInterval(showCountdown, 1000);
-    }
-    //This function displays the countdown
-    function showCountdown() {
-        seconds--;
-
-        if (seconds < 10) {
-            $("#timeLeft").html("00:0" + seconds);
-
-        }
-        else {
-            $("#timeLeft").html("00:0" + seconds);
-        }
-        if (seconds < 1) {
-            clearInterval(time);
-            answered = false;
-            answerPage();
-        }
-
-
-        //This function takes the user to the answer page after the user selects an answer or timer runs out
-        function answerPage() {
-            $("#currentQuestion").empty();
-            $(".thisChoice").empty(); //Clears question page
-            $(".question").empty();
-            $("#gif").show();
-            $("#gifCaption").show();
-        }
-
-            var rightAnswerText = triviaQuest[currentQuestion].answer[triviaQuest[currentQuestion].answer];
-            console.log("rightAnswerText, line 219");
-            var rightAnswerIndex = triviaQuest[currentQuestion].answer;
-            console.log("rightAnswerIndex, line 221");
-
-            //This adds the gif that corresponds to this question
-            var gifImageLink = triviaQuest[currentQuestion].image;
-            var newGif = $("<img>");
-            newGif.attr("src", gifImageLink);
-            newGif.addClass("gifImg");
-            $("#gif").html(newGif);
-
-            //This adds a line of text below the gif that talks about why the answer is correct.
-            var gifCaption = triviaQuest[currentQuestion].answerText;
-                    newCaption = $("<div>");
-                    newCaption.html(gifCaption);
-                    newCaption.addClass("gifCaption");
-                    $("#gifCaption").html(newCaption);
-
-        //This checks to see if user choice is correct, incorrect, or unanswered
-        if ((userSelect == rightAnswerIndex) && (answered === true)) {
-            correctAnswer++;
-            $("#message").html(messages.incorrect);
-
-        } else if ((userSelect != rightAnswerIndex) && (answered === true)) {
-            incorrectAnswer++;
-            $("#message").html("The correct answer was: " + rightAnswerText);
-
-        } else {
-            unanswered++;
-            $("#message").html(messages.incorrect);
-            $("#correctedAnswer").html("The correct answe was: " + rightAnswerText);
-            answered = true;
-        }
-        if (currentQuestion == (triviaQuestions.length - 1)) {
-            setTimeout(scoreboard, 6000);
-        } else {
-            currentQuestion++;
-            setTimeout(newQuestion, 6000);
-        }
-
-
-        //This function displays all the game stats
-        function scoreboard() {
-            $("#timeLeft").empty();
-            $("#message").empty();
-            $("#correctedAnswer").empty();
-            $("#gif").hide();
-            $("#gifCaption").hide();
-
-            $("#finalMessage").html(messages.finished);
-            $("#correctAnswers").html("Correct Answers: " + correctAnswer);
-            $("#incorrectAnswers").html("Incorrect Answers: " + incorrectAnswer);
-            $("#unanswered").html("Unanaswered: " + unanswered);
-            $("#startOverBtn").addClass("reset");
-            $("#startOverBtn").show();
-            $("#startOverBtn").html("PLAY AGAIN");
-
-        }
-    }
-});

@@ -24,6 +24,7 @@ var trivia = {
         q5: "Which Hollywood leading man was in Spy Game, The Horse Whisperer, and All the President's Men?",
         q6: "What actor gets the girl in There's Something About Mary?",
         q7: "What 1975 film made people afraid to go into the water?",
+        q8: "Who played Captain Kirk in the series and the motion, Star Trek?",
     },
     options: {
         q1: ["Falafal", "Salad", "Soup", "Spaghetti"],
@@ -33,6 +34,7 @@ var trivia = {
         q5: ["Clint Eastwood", "Al Pacino", "Robert Redford", "Ben Affleck"],
         q6: ["Ben Stiller", "Matt Damon", "David Spade", "Brad Pitt"],
         q7: ["Baby Shark", "Hammerhead", "Jaws", "Megladon"],
+        q8: ["Harrison Ford", "Tom Selleck", "Kurt Russell", "William Shatner"],
     },
     answers: {
         q1: "Spaghetti",
@@ -42,6 +44,7 @@ var trivia = {
         q5: "Robert Redford",
         q6: "Ben Stiller",
         q7: "Jaws",
+        q8: "William Shatner",
         
     },
    

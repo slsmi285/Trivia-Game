@@ -4,29 +4,26 @@ body {
     background-attachment: fixed;
     background-size: 100% 100%;
     text-align: center;
-    
-}
-.text-muted{
+  }
+  .text-muted{
     color: blue;
-}
-.last-seconds{
+  }
+  .last-seconds{
     color:red;
-}
+  }
+  .jumbotron {
+      position: relative;
+      background-color: lawngreen;
+      text-align: center;
+      border: 2px solid darkgreen;
+  }
+ #start {
+    border: 1px solid black;
+    margin-left: 450px;
+  }
 
-#start {
+ #options {
     position: relative;
-    margin-left: 600px;
+    margin: 50px 50px 0 300px;
     
-}
-#question {
-    position: relative;
-    margin-left: 125px;
-}
-#options {
-    position: relative;
-    top: 50px;
-    left: 750px;
-    bottom: 100px
-    
-}
-
+  }

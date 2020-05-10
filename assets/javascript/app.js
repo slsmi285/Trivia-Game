@@ -44,6 +44,8 @@ var trivia = {
         q7: "Jaws",
         
     },
+   
+
     //trivia methods
     //method to initialize game
     startGame: function(){
@@ -92,10 +94,12 @@ var trivia = {
         var questionOptions = Object.values(trivia.options)[trivia.currentSet];
 
         //creates all the trivia guess options in the html
-        $.each(questionOptions, function (idex, key) {
-            $("#options").append($('<button class="option btn btn-info btn-lg">' + key + '</button>'));
+        $.each(questionOptions, function (index, key) {
+            $("#options").append($('<button class="option btn btn-info btn-md">' + key + '</button>'));
         })
     },
+
+
 
     //method to decrement counter and count unanswered if timer runs out
     timerRunning: function() {
@@ -113,18 +117,18 @@ var trivia = {
             trivia.result = false;
             clearInterval(trivia.timerId);
             resultId = setTimeout(trivia.guessResult, 1000);
-            $("#results").html("<h3>Times Up! The answer was " + Object.values(trivia.answers)[trivia.currentSet] + "</h3>");
+            $("#results").html("<h3>Times Up! The answer was   " + Object.values(trivia.answers)[trivia.currentSet] + " </h3>");
         }
         //if all the questions have been shown end the game, show results
         else if (trivia.currentSet === Object.keys(trivia.questions).length) {
 
             //adds results of game (correct, incorrect, unanswered) to the page
             $("#results")
-            .html("<h3>Thank you for playing!</h3>" +
-                "<p>Correct: " + trivia.correct + "</p>" +
-                "<p>Incorrect: " + trivia.incorrect + "</p>" +
-                "<p>Unanswered: " + trivia.unanswered + "</p>" +
-                "<p>Do you want to play gain?</p>");
+            .html("<h3>Thank you for playing! </h3>" +
+                "<h6>Correct:  " + trivia.correct + "</h6>" +
+                "<h6>Incorrect:  " + trivia.incorrect + "</h6>" +
+                "<h6>Unanswered:  " + trivia.unanswered + "</h6>" +
+                "<h4>Do you want to play again?</h4>");
 
                 //hide game section
                 $("#game").hide();
@@ -141,7 +145,7 @@ var trivia = {
 
         //the answer to the current question being asked
         var currentAnswer = Object.values(trivia.answers)[trivia.currentSet];
-
+        
         //if the text of the option picked matches the answer of the current question, increment correct
         if ($(this).text() === currentAnswer) {
             //turn button green for correct
